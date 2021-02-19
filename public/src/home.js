@@ -27,17 +27,14 @@ function getMostCommonGenres(books) {
   // iterating through the array created above
   allGenres.forEach((genre) => {
     // using the some() method to check if the genre was already pushed to the commonGenres array
-    let isIn = commonGenres.some((commonGenre) => genre === commonGenre.name);
+    let isIn = commonGenres.some((commonGenre) => {
+      genre === commonGenre.name;
+      // once the genre was found in the list, I increase its count
+      commonGenre.count++;
+    });
     // if the genre was not pushed yet, push an object that looks like this: {name: fiction, count: 1}
     if (!isIn) {
       commonGenres.push({ name: genre, count: 1 });
-    } else {
-      // if the genre was already pushed, find that genre and add one to its count value
-      commonGenres.forEach((common) => {
-        if (common.name === genre) {
-          common.count++;
-        }
-      });
     }
   });
   // using the helper function shortenArray to sort the commonGenres array and shorten it to a length of 5
